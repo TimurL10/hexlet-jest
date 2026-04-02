@@ -13,7 +13,11 @@ test('reverse', () => {
 })
 
 test('test reverse text', () => {
-  let file_text = fs.readFileSync(path.join(__dirname,'..', '__fixtures__', 'text.txt'), 'utf-8');
+  let getFixturePath = file_name => path.join(__dirname,'..', '__fixtures__', file_name);
+  let readFile = file_name => fs.readFileSync(getFixturePath(file_name), 'utf-8');
+  
+
+  let file_text = readFile('text.txt');
   fs.writeFileSync('reversed_text.txt', reverse(file_text));
   expect(file_text).not.toEqual(reverse(file_text));
 })
